@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>关系图</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background: url(https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPng3fee0b89c103ccebb797e96c80cdc946951fd2b6d77c85ecc93acd6744a4b735) 100% no-repeat;
+      background-size: 100% 100%;
+    }
+
+    html {
+      font-size: 14px;
+    }
+
+    #gxt {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="index.html">测试数据</a>
+  <div id="gxt"></div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/echarts.min.js"></script>
+  <script>
+    var chartDom = document.getElementById('gxt')
+    var myChart = echarts.init(chartDom)
+    var option
+
+    option = {
+      title: {
+        text: '关系图',
+      },
+      tooltip: {},
+      circular: {
+        rotateLabel: true,
+      },
+      animationDurationUpdate: 1500,
+      animationEasingUpdate: 'quinticInOut',
+      series: [
+        {
+          type: 'graph',
+          layout: 'force',
+          symbolSize: 60,
+          selectedMode: 'single',
+          focusNodeAdjacency: true,
+          roam: true,
+          scaleLimit: {
+            min: 1.3,
+            max: 1.7,
+          },
+          label: {
+            normal: {
+              show: true,
+              textStyle: {
+                fontSize: 14,
+              },
+            },
+          },
+          force: {
+            repulsion: 1700,
+          },
+          edgeSymbolSize: [10, 60],
+          edgeLabel: {
+            normal: {
+              show: true,
+              textStyle: {
+                fontSize: 10,
+              },
+              formatter: '{c}',
+            },
+          },
+          data: [
+            {
+              name: '阿尔温',
+              draggable: true,
+              symbol: `image://https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/21acc8b26684433bb26c0797680e1b00_mergeImage.png`,
+              symbolSize: 60,
+              symbolKeepAspect: true,
+              itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgb(255, 104, 152)',
+              },
+              label: {
+                show: true,
+                distance: -5,
+                position: 'bottom',
+                fontSize: 14,
+                lineHeight: 24,
+                backgroundColor: 'rgb(255, 104, 152)',
+                color: '#fff',
+                padding: [2, 5, 0, 5],
+                borderRadius: 4,
+              },
+              select: {
+                itemStyle: {
+                  shadowBlur: 50,
+                  shadowColor: '#ff0202',
+                },
+              },
+            },
+            {
+              name: '埃尔隆德',
+              draggable: true,
+              itemStyle: {
+                color: 'rgb(52, 40, 222)',
+              },
+            },
+            {
+              name: '甘道夫',
+              draggable: true,
+              symbol: `image://https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/ac7a73112efc419881c4e75b57ccea0e_mergeImage.png`,
+              symbolSize: 60,
+              symbolKeepAspect: true,
+              itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgb(90, 209, 230)',
+              },
+              label: {
+                show: true,
+                distance: -5,
+                position: 'bottom',
+                fontSize: 14,
+                lineHeight: 24,
+                backgroundColor: 'rgb(90, 209, 230)',
+                color: '#fff',
+                padding: [2, 5, 0, 5],
+                borderRadius: 4,
+              },
+            },
+            {
+              name: '弗罗多',
+              draggable: true,
+              symbol: `image://https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/3a49982a3e814d918e088173b92fc43a_mergeImage.png`,
+              symbolSize: 60,
+              symbolKeepAspect: true,
+              itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgb(18, 174, 70)',
+              },
+              label: {
+                show: true,
+                distance: -5,
+                position: 'bottom',
+                fontSize: 14,
+                lineHeight: 24,
+                backgroundColor: 'rgb(18, 174, 70)',
+                color: '#fff',
+                padding: [2, 5, 0, 5],
+                borderRadius: 4,
+              },
+            },
+            {
+              name: '梅里',
+              category: 1,
+              draggable: true,
+              itemStyle: {
+                color: 'rgb(253, 152, 55)',
+              },
+            },
+            {
+              name: '皮里',
+              draggable: true,
+              symbol: `image://https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/674276862e5f49e7b4ffd1c4127d2f29_mergeImage.png`,
+              symbolSize: 60,
+              symbolKeepAspect: true,
+              itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgb(187, 127, 0)',
+              },
+              label: {
+                show: true,
+                distance: -5,
+                position: 'bottom',
+                fontSize: 14,
+                lineHeight: 24,
+                backgroundColor: 'rgb(187, 127, 0)',
+                color: '#fff',
+                padding: [2, 5, 0, 5],
+                borderRadius: 4,
+              },
+            },
+            {
+              name: '阿拉贡',
+              draggable: true,
+              symbol: `image://https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/e9fa3dbbb491401d9753d674a9c54f7c_mergeImage.png`,
+              symbolSize: 60,
+              symbolKeepAspect: true,
+              itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgb(52, 107, 254)',
+              },
+              label: {
+                show: true,
+                distance: -5,
+                position: 'bottom',
+                fontSize: 14,
+                lineHeight: 24,
+                backgroundColor: 'rgb(52, 107, 254)',
+                color: '#fff',
+                padding: [2, 5, 0, 5],
+                borderRadius: 4,
+              },
+            },
+            {
+              name: '法拉米尔',
+              draggable: true,
+              symbol: `image://https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/998a97b8e7764af19ff86a0d2a4fdc9f_mergeImage.png`,
+              symbolSize: 60,
+              symbolKeepAspect: true,
+              itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgb(117, 165, 243)',
+              },
+              label: {
+                show: true,
+                distance: -5,
+                position: 'bottom',
+                fontSize: 14,
+                lineHeight: 24,
+                backgroundColor: 'rgb(117, 165, 243)',
+                color: '#fff',
+                padding: [2, 5, 0, 5],
+                borderRadius: 4,
+              },
+            },
+            {
+              name: '莱戈拉斯',
+              draggable: true,
+              symbol: `image://https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/0de03c2f80e5437399a080744969e84a_mergeImage.png`,
+              symbolSize: 60,
+              symbolKeepAspect: true,
+              itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgb(144, 142, 240)',
+              },
+              label: {
+                show: true,
+                distance: -5,
+                position: 'bottom',
+                fontSize: 14,
+                lineHeight: 24,
+                backgroundColor: 'rgb(144, 142, 240)',
+                color: '#fff',
+                padding: [2, 5, 0, 5],
+                borderRadius: 4,
+              },
+            },
+            {
+              name: '吉姆里',
+              draggable: true,
+              symbol: `image://https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/a6c30e0c4420448ba733f41fa30dc22b_mergeImage.png`,
+              symbolSize: 60,
+              symbolKeepAspect: true,
+              itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgb(199, 115, 25)',
+              },
+              label: {
+                show: true,
+                distance: -5,
+                position: 'bottom',
+                fontSize: 14,
+                lineHeight: 24,
+                backgroundColor: 'rgb(199, 115, 25)',
+                color: '#fff',
+                padding: [2, 5, 0, 5],
+                borderRadius: 4,
+              },
+            },
+            {
+              name: '伊欧文',
+              category: 1,
+              draggable: true,
+              itemStyle: {
+                color: 'rgb(255, 176, 0)',
+              },
+            },
+            {
+              name: '山姆怀斯',
+              category: 1,
+              draggable: true,
+              itemStyle: {
+                color: 'rgb(64,200,187)',
+              },
+            },
+            {
+              name: '伊欧墨',
+              draggable: true,
+              symbol: `image://https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/e52e411127384c7daa5c1fdfc86b0ba4_mergeImage.png`,
+              symbolSize: 60,
+              symbolKeepAspect: true,
+              itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgb(0, 48, 187)',
+              },
+              label: {
+                show: true,
+                distance: -5,
+                position: 'bottom',
+                fontSize: 14,
+                lineHeight: 24,
+                backgroundColor: 'rgb(0, 48, 187)',
+                color: '#fff',
+                padding: [2, 5, 0, 5],
+                borderRadius: 4,
+              },
+            },
+          ],
+          links: [
+            {
+              source: '阿尔温',
+              target: '埃尔隆德',
+              label: {
+                show: true,
+                formatter: ['{a|女儿}{c|x}{x|父亲}', '{b|1}{d|x}{y|2}'].join(
+                  '\n'
+                ),
+                rich: {
+                  y: {
+                    backgroundColor: {
+                      image: 'img/left.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                  c: {
+                    color: 'transparent',
+                    width: 35,
+                  },
+                  d: {
+                    color: 'transparent',
+                    width: 10,
+                  },
+                  b: {
+                    backgroundColor: {
+                      image: 'img/right.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                },
+                lineHeight: 4,
+              },
+            },
+            {
+              source: '埃尔隆德',
+              target: '甘道夫',
+              value: '好友',
+            },
+            {
+              source: '甘道夫',
+              target: '弗罗多',
+              label: {
+                show: true,
+                formatter: ['{c|x}{x|指导}', '{d|x}{y|2}'].join('\n'),
+                rich: {
+                  y: {
+                    backgroundColor: {
+                      image: 'img/left.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                  c: {
+                    color: 'transparent',
+                    width: 35,
+                  },
+                  d: {
+                    color: 'transparent',
+                    width: 10,
+                  },
+                },
+                lineHeight: 4,
+              },
+            },
+            {
+              source: '甘道夫',
+              target: '法拉米尔',
+              label: {
+                show: true,
+                formatter: ['{a|学徒}{c|x}{x|导师}', '{b|1}{d|x}{y|2}'].join(
+                  '\n'
+                ),
+                rich: {
+                  y: {
+                    backgroundColor: {
+                      image: 'img/left.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                  c: {
+                    color: 'transparent',
+                    width: 45,
+                  },
+                  d: {
+                    color: 'transparent',
+                    width: 20,
+                  },
+                  b: {
+                    backgroundColor: {
+                      image: 'img/right.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                },
+                lineHeight: 4,
+              },
+            },
+            {
+              source: '弗罗多',
+              target: '梅里',
+              value: '朋友',
+            },
+            {
+              source: '弗罗多',
+              target: '皮里',
+              value: '朋友',
+            },
+            {
+              source: '梅里',
+              target: '皮里',
+              value: '挚友',
+              ignoreForceLayout: true,
+            },
+            {
+              source: '弗罗多',
+              target: '山姆怀斯',
+              label: {
+                show: true,
+                formatter: [
+                  '{a|主人}{c|x}{x|仆人}',
+                  '{b|1}{d|挚友}{y|2}',
+                ].join('\n'),
+                rich: {
+                  y: {
+                    backgroundColor: {
+                      image: 'img/left.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                  c: {
+                    color: 'transparent',
+                    width: 45,
+                  },
+                  d: {
+                    color: '#000',
+                    width: 20,
+                  },
+                  b: {
+                    backgroundColor: {
+                      image: 'img/right.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                },
+                lineHeight: 4,
+              },
+            },
+            {
+              source: '弗罗多',
+              target: '阿拉贡',
+              value: '好友',
+            },
+            {
+              source: '阿拉贡',
+              target: '阿尔温',
+              value: '相爱夫妻',
+            },
+            {
+              source: '阿拉贡',
+              target: '阿尔温',
+              value: '相爱夫妻',
+            },
+            {
+              source: '阿拉贡',
+              target: '莱戈拉斯',
+              value: '挚友',
+            },
+            {
+              source: '阿拉贡',
+              target: '吉姆里',
+              value: '挚友',
+            },
+            {
+              source: '莱戈拉斯',
+              target: '吉姆里',
+              value: 1000,
+              ignoreForceLayout: true,
+              label: {
+                show: true,
+                formatter: [
+                  '{a|讨厌}{c|x}{x|讨厌}',
+                  '{b|1}{d|挚友}{y|2}',
+                ].join('\n'),
+                rich: {
+                  y: {
+                    backgroundColor: {
+                      image: 'img/left.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                  c: {
+                    color: 'transparent',
+                    width: 45,
+                  },
+                  d: {
+                    color: '#000',
+                    width: 20,
+                  },
+                  b: {
+                    backgroundColor: {
+                      image: 'img/right.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                },
+                lineHeight: 4,
+              },
+            },
+            {
+              source: '阿拉贡',
+              target: '伊欧文',
+              label: {
+                show: true,
+                formatter: ['{c|x}{x|爱慕}', '{d|挚友}{y|2}'].join('\n'),
+                rich: {
+                  y: {
+                    backgroundColor: {
+                      image: 'img/left.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                  c: {
+                    color: 'transparent',
+                    width: 35,
+                  },
+                  d: {
+                    color: 'transparent',
+                    width: 10,
+                  },
+                  b: {
+                    backgroundColor: {
+                      image: 'img/right.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                },
+                lineHeight: 4,
+              },
+            },
+            {
+              source: '伊欧文',
+              target: '伊欧墨',
+              label: {
+                show: true,
+                formatter: [
+                  '{a|妹妹}{c|x}{x|哥哥}',
+                  '{b|1}{d|挚友}{y|2}',
+                ].join('\n'),
+                rich: {
+                  y: {
+                    backgroundColor: {
+                      image: 'img/left.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                  c: {
+                    color: 'transparent',
+                    width: 35,
+                  },
+                  d: {
+                    color: 'transparent',
+                    width: 10,
+                  },
+                  b: {
+                    backgroundColor: {
+                      image: 'img/right.png',
+                    },
+                    color: 'transparent',
+                    verticalAlign: 'top',
+                    padding: [3.5, 0, 0, 0],
+                  },
+                },
+                lineHeight: 4,
+              },
+            },
+          ],
+          lineStyle: {
+            normal: {
+              color: '#000',
+              opacity: 0.9,
+              width: 1,
+              curveness: 0,
+            },
+          },
+        },
+      ],
+    }
+    option && myChart.setOption(option)
+  </script>
+</body>
+
+</html>
