@@ -88,6 +88,7 @@
     })
 
     lineJson.forEach((item, index) => {
+      item.ignoreForceLayout = true
       dataJson.forEach((n, m) => {
         if (item.start == n.id) {
           item.source = m
@@ -101,7 +102,7 @@
         formatter: (params) => {
           return [
             `{a|${item.name0 || ""}}{c|x}{x|${item.name1 || ""}}`,
-            `${item.name0 ? '{b|1}' : ''}{d|${item.name2 || ''}}${item.name1 ? '{y|2}' : ''}`,
+            `${item.name0 ? '{b|1}' : ''}${item.name2 ? '{d|' + item.name2 + '}' : ''}${item.name1 ? '{y|2}' : ''}`,
           ].join('\n')
         },
         rich: {
@@ -115,12 +116,13 @@
           },
           c: {
             color: 'transparent',
-            width: 80,
+            width: 100,
           },
           d: {
             color: '#000',
-            width: 40,
+            width: 180,
             align: 'center',
+            // backgroundColor: '#e8f1ff'
           },
           b: {
             backgroundColor: {
@@ -165,7 +167,8 @@
             },
           },
           force: {
-            repulsion: 5700,
+            repulsion: 700,
+            // edgeLength: 5700,
           },
           edgeSymbolSize: [10, 60],
           edgeLabel: {
