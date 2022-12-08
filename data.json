@@ -20,6 +20,13 @@ var data={
           "icon": "https://knibu-image-temporary.oss-cn-beijing.aliyuncs.com/2022-08-10-53e9245b-4675-4edf-86fc-265108466933.png",
           "color": "#74472B",
           "isSelect": 1
+        },
+        {
+          "id": "31231231dasdasdas",
+          "name": "角色4",
+          "icon": "https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/21acc8b26684433bb26c0797680e1b00_mergeImage.png",
+          "color": "#74472B",
+          "isSelect": 1
         }
       ],
      "lineJson":[
@@ -27,6 +34,7 @@ var data={
           "start": "ff738b49-7eb8-4720-b32b-b1a88a894472", 
           "end": "3a193595-4a8a-40da-91de-d4acd461b6c8",
           "name0": "哥哥", 
+          // "name1": "弟弟", 
           "name2": "兄弟", 
           "weight0": 1,
           "weight1": 1
