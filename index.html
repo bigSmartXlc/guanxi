@@ -35,12 +35,11 @@
 </head>
 
 <body>
-  <a href="demo.html">DEMO</a>
   <div id="gxt"></div>
   <script src="./data.json"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/echarts.min.js"></script>
-  <script type="module" src="./index.js"></script>
+  <script src="js/vconsole.min.js"></script>
   <script>
     let json = data;
     dataJson = json.dataJson
@@ -50,32 +49,48 @@
     var option
     var datalist = []
     dataJson.forEach((item) => {
-      datalist.push({
-        name: item.name,
-        draggable: true,
-        symbol: `image://${item.icon}`,
-        symbolSize: 60,
-        symbolKeepAspect: true,
-        label: {
-          show: true,
-          distance: -5,
-          position: 'bottom',
-          fontSize: 14,
-          lineHeight: 24,
-          backgroundColor: item.color,
-          color: '#fff',
-          padding: [2, 5, 0, 5],
-          borderRadius: 4,
-        },
-        select: {
-          itemStyle: {
-            shadowBlur: 30,
-            shadowColor: item.color,
+      if (item.icon) {
+        datalist.push({
+          name: item.name,
+          // fixed: true,
+          draggable: true,
+          symbol: `image://${item.icon}`,
+          symbolSize: 60,
+          symbolKeepAspect: true,
+          label: {
+            show: true,
+            distance: -5,
+            position: 'bottom',
+            fontSize: 14,
+            lineHeight: 24,
+            backgroundColor: item.color,
+            color: '#fff',
+            padding: [2, 5, 0, 5],
+            borderRadius: 4,
           },
-        },
-      })
+          select: {
+            itemStyle: {
+              shadowBlur: 30,
+              shadowColor: item.color,
+            },
+          },
+        })
+      } else {
+        datalist.push({
+          name: item.name,
+          draggable: true,
+          label: {
+            show: true,
+          },
+          select: {
+            itemStyle: {
+              shadowBlur: 30,
+              shadowColor: item.color,
+            },
+          },
+        })
+      }
     })
-
     lineJson.forEach((item, index) => {
       item.ignoreForceLayout = true
       dataJson.forEach((n, m) => {
@@ -136,7 +151,7 @@
       circular: {
         rotateLabel: false,
       },
-      animationDurationUpdate: 1500,
+      animationDurationUpdate: 1000,
       animationEasingUpdate: 'quinticInOut',
       series: [
         {
@@ -147,7 +162,7 @@
           focusNodeAdjacency: true,
           autoCurveness: [0, 0.08],
           zoom: 1.5,
-          roam: false,
+          roam: 'move',
           label: {
             normal: {
               show: true,
@@ -185,6 +200,11 @@
     myChart.on('click', (arg) => {
       alert('您点击了' + arg.data.name)
     })
+    window.addEventListener('resize', function () {
+      myChart.resize();
+    });
+    // 真机调试工具
+    var vConsole = new VConsole();
   </script>
 </body>
 
