@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="favicon.ico">
   <title>关系图</title>
   <style>
     * {
@@ -39,9 +40,8 @@
   <script src="./data.json"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/echarts.min.js"></script>
-  <script src="js/vconsole.min.js"></script>
   <script>
-    let json = data;
+    var json = data;
     dataJson = json.dataJson
     lineJson = json.lineJson
     var chartDom = document.getElementById('gxt')
@@ -204,7 +204,6 @@
       myChart.resize();
     });
     // 真机调试工具
-    var vConsole = new VConsole();
   </script>
 </body>
 
