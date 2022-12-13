@@ -1,210 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="favicon.ico">
-  <title>关系图</title>
-  <style>
-    * {
-      padding: 0;
-      margin: 0;
-    }
-
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-    }
-
-    body {
-      background: url(https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPng3fee0b89c103ccebb797e96c80cdc946951fd2b6d77c85ecc93acd6744a4b735) 100% no-repeat;
-      background-size: 100% 100%;
-    }
-
-    html {
-      font-size: 14px;
-    }
-
-    #gxt {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="gxt"></div>
-  <script src="./data.json"></script>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/echarts.min.js"></script>
-  <script>
-    var json = data;
-    dataJson = json.dataJson
-    lineJson = json.lineJson
-    var chartDom = document.getElementById('gxt')
-    var myChart = echarts.init(chartDom)
-    var option
-    var datalist = []
-    dataJson.forEach((item) => {
-      if (item.icon) {
-        datalist.push({
-          name: item.name,
-          // fixed: true,
-          draggable: true,
-          symbol: `image://${item.icon}`,
-          symbolSize: 60,
-          symbolKeepAspect: true,
-          label: {
-            show: true,
-            distance: -5,
-            position: 'bottom',
-            fontSize: 14,
-            lineHeight: 24,
-            backgroundColor: item.color,
-            color: '#fff',
-            padding: [2, 5, 0, 5],
-            borderRadius: 4,
-          },
-          select: {
-            itemStyle: {
-              shadowBlur: 30,
-              shadowColor: item.color,
-            },
-          },
-        })
-      } else {
-        datalist.push({
-          name: item.name,
-          draggable: true,
-          label: {
-            show: true,
-          },
-          select: {
-            itemStyle: {
-              shadowBlur: 30,
-              shadowColor: item.color,
-            },
-          },
-        })
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico" />
+    <title>关系图</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
       }
-    })
-    lineJson.forEach((item, index) => {
-      item.ignoreForceLayout = true
-      dataJson.forEach((n, m) => {
-        if (item.start == n.id) {
-          item.source = m
-        }
-        if (item.end == n.id) {
-          item.target = m
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        background: url(https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPng3fee0b89c103ccebb797e96c80cdc946951fd2b6d77c85ecc93acd6744a4b735)
+          100% no-repeat;
+        background-size: 100% 100%;
+      }
+
+      html {
+        font-size: 14px;
+      }
+
+      #gxt {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="gxt"></div>
+    <script src="./data.json"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script>
+      var json = data
+      dataJson = json.dataJson
+      lineJson = json.lineJson
+      var chartDom = document.getElementById('gxt')
+      var myChart = echarts.init(chartDom)
+      var option
+      var datalist = []
+      dataJson.forEach((item) => {
+        if (item.icon) {
+          datalist.push({
+            name: item.name,
+            // fixed: true,
+            draggable: true,
+            symbol: `image://${item.icon}`,
+            symbolSize: 60,
+            symbolKeepAspect: true,
+            label: {
+              show: true,
+              distance: -5,
+              position: 'bottom',
+              fontSize: 14,
+              lineHeight: 24,
+              backgroundColor: item.color,
+              color: '#fff',
+              padding: [2, 5, 0, 5],
+              borderRadius: 4,
+            },
+            select: {
+              itemStyle: {
+                shadowBlur: 30,
+                shadowColor: item.color,
+              },
+            },
+          })
+        } else {
+          datalist.push({
+            name: item.name,
+            draggable: true,
+            label: {
+              show: true,
+            },
+            select: {
+              itemStyle: {
+                shadowBlur: 30,
+                shadowColor: item.color,
+              },
+            },
+          })
         }
       })
-      item.label = {
-        show: true,
-        formatter: (params) => {
-          return [
-            `{a|${item.name0 || ""}}{c|x}{x|${item.name1 || ""}}`,
-            `${item.name0 ? '{b|1}' : ''}${item.name2 ? '{d|' + item.name2 + '}' : ''}${item.name1 ? '{y|2}' : ''}`,
-          ].join('\n')
-        },
-        rich: {
-          y: {
-            backgroundColor: {
-              image: 'img/left.png',
+      lineJson.forEach((item, index) => {
+        item.ignoreForceLayout = true
+        dataJson.forEach((n, m) => {
+          if (item.start == n.id) {
+            item.source = m
+          }
+          if (item.end == n.id) {
+            item.target = m
+          }
+        })
+        item.label = {
+          show: true,
+          formatter: (params) => {
+            return [
+              `{a|${item.name0 || ''}}{c|x}{x|${item.name1 || ''}}`,
+              `${item.name0 ? '{b|1}' : ''}${
+                item.name2 ? '{d|' + item.name2 + '}' : ''
+              }${item.name1 ? '{y|2}' : ''}`,
+            ].join('\n')
+          },
+          rich: {
+            y: {
+              backgroundColor: {
+                image: 'img/left.png',
+              },
+              color: 'transparent',
+              verticalAlign: 'top',
+              padding: [4, 0, 0, 0],
             },
-            color: 'transparent',
-            verticalAlign: 'top',
-            padding: [4, 0, 0, 0],
-          },
-          c: {
-            color: 'transparent',
-            width: 100,
-          },
-          d: {
-            color: '#000',
-            width: 30,
-            align: 'center',
-            padding: [1, 0, 0, 0],
-            verticalAlign: 'top',
-            backgroundColor: 'rgba(239,245,255,2)',
-            borderRadius: 20
-          },
-          b: {
-            backgroundColor: {
-              image: 'img/right.png',
+            c: {
+              color: 'transparent',
+              width: 100,
             },
-            color: 'transparent',
-            verticalAlign: 'top',
-            padding: [4, 0, 0, 0],
+            d: {
+              color: '#000',
+              width: 30,
+              align: 'center',
+              padding: [1, 0, 0, 0],
+              verticalAlign: 'top',
+              backgroundColor: 'rgba(239,245,255,2)',
+              borderRadius: 20,
+            },
+            b: {
+              backgroundColor: {
+                image: 'img/right.png',
+              },
+              color: 'transparent',
+              verticalAlign: 'top',
+              padding: [4, 0, 0, 0],
+            },
           },
+          lineHeight: 4,
+        }
+      })
+      option = {
+        title: {
+          text: '关系图',
         },
-        lineHeight: 4,
+        tooltip: {},
+        circular: {
+          rotateLabel: false,
+        },
+        animationDurationUpdate: 1000,
+        animationEasingUpdate: 'quinticInOut',
+        series: [
+          {
+            type: 'graph',
+            layout: 'force',
+            symbolSize: 60,
+            selectedMode: 'single',
+            autoCurveness: [0, 0.08],
+            zoom: 1.5,
+            roam: 'move',
+            label: {
+              normal: {
+                show: true,
+                textStyle: {
+                  fontSize: 14,
+                },
+              },
+            },
+            force: {
+              repulsion: 700,
+            },
+            edgeSymbolSize: [10, 60],
+            edgeLabel: {
+              normal: {
+                show: true,
+                textStyle: {
+                  fontSize: 10,
+                },
+                formatter: '{c}',
+              },
+            },
+            data: datalist,
+            links: lineJson,
+            lineStyle: {
+              normal: {
+                color: 'rgba(0,0,0,0.5)',
+                opacity: 0.9,
+                width: 1,
+              },
+            },
+          },
+        ],
       }
-    })
-    option = {
-      title: {
-        text: '关系图',
-      },
-      tooltip: {},
-      circular: {
-        rotateLabel: false,
-      },
-      animationDurationUpdate: 1000,
-      animationEasingUpdate: 'quinticInOut',
-      series: [
-        {
-          type: 'graph',
-          layout: 'force',
-          symbolSize: 60,
-          selectedMode: 'single',
-          focusNodeAdjacency: true,
-          autoCurveness: [0, 0.08],
-          zoom: 1.5,
-          roam: 'move',
-          label: {
-            normal: {
-              show: true,
-              textStyle: {
-                fontSize: 14,
-              },
-            },
-          },
-          force: {
-            repulsion: 700,
-          },
-          edgeSymbolSize: [10, 60],
-          edgeLabel: {
-            normal: {
-              show: true,
-              textStyle: {
-                fontSize: 10,
-              },
-              formatter: '{c}',
-            },
-          },
-          data: datalist,
-          links: lineJson,
-          lineStyle: {
-            normal: {
-              color: 'rgba(0,0,0,0.5)',
-              opacity: 0.9,
-              width: 1,
-            },
-          },
-        },
-      ],
-    }
-    option && myChart.setOption(option)
-    myChart.on('click', (arg) => {
-      alert('您点击了' + arg.data.name)
-    })
-    window.addEventListener('resize', function () {
-      myChart.resize();
-    });
-    // 真机调试工具
-  </script>
-</body>
-
+      option && myChart.setOption(option)
+      myChart.on('click', (arg) => {
+        alert('您点击了' + arg.data.name)
+      })
+      myChart.on('mouseup', function (params) {
+        var option = myChart.getOption()
+        option.series[0].data[params.dataIndex].x = params.event.offsetX
+        option.series[0].data[params.dataIndex].y = params.event.offsetY
+        option.series[0].data[params.dataIndex].fixed = true
+        myChart.setOption(option)
+      })
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+      // 真机调试工具
+    </script>
+  </body>
 </html>
