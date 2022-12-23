@@ -48,7 +48,7 @@ var data={
           "start": "ff738b49-7eb8-4720-b32b-b1a88a894472", 
           "end": "3a193595-4a8a-40da-91de-d4acd461b6c8",
           "name0": "哥哥", 
-          // "name1": "弟弟", 
+          "name1": "弟弟", 
           "name2": "兄弟", 
           "weight0": 1,
           "weight1": 1
